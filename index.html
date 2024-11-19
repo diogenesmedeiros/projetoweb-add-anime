@@ -10,24 +10,26 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="position-absolute top-50 start-50 translate-middle">
-            <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
-                <p class="text-center fs-4 fw-bold">Adicionar um anime</p>
-                <p class="text-center fw-bold" style="color: red;">Em algumas ocasiões, pode ocorrer um pequeno atraso no processamento, mas garanto que o anime será sempre adicionado.</p>
-                <form id="animeForm">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Titulo anime</label>
-                        <input type="text" class="form-control" id="title" name="title">
-                    </div>
-                    <div class="mb-3">
-                        <label for="file" class="form-label">Escolha a capa do anime</label>
-                        <input class="form-control" type="file" id="file" name="file">
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                </form>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="shadow p-4 bg-body-tertiary rounded">
+                    <p class="text-center fs-4 fw-bold">Adicionar um anime</p>
+                    <p class="text-center fw-bold text-danger">Em algumas ocasiões, pode ocorrer um pequeno atraso no processamento, mas garanto que o anime será sempre adicionado.</p>
+                    <form id="animeForm">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Título do anime</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Digite o título">
+                        </div>
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Escolha a capa do anime</label>
+                            <input class="form-control" type="file" id="file" name="file">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -38,7 +40,7 @@
                 <strong class="me-auto" id="toastTitle"></strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <div class="toast-body" style="color: white;" id="toastBody"></div>
+            <div class="toast-body text-white" id="toastBody"></div>
         </div>
     </div>
 
