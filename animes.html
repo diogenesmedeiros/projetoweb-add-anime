@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="shadow p-4 bg-body-tertiary rounded">
+                    <p class="text-center fs-4 fw-bold">Animes no sistema</p>
+                    <div id="animeCards" class="row g-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 11;">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto" id="toastTitle"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-white" id="toastBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const api_url = 'https://projetoweb-api.vercel.app';
+        const animeCardsContainer = document.getElementById("animeCards");
+
+        const getAnimes = async () => {
+            try {
+                const response = await fetch(api_url + "/anime", { method: 'GET' });
+
+                if (response.ok) {
+                    let animes = await response.json();
+                    animes = animes.animes;
+
+                    animes.forEach(anime => {
+                        const card = document.createElement("div");
+                        card.className = "col-md-4";
+
+                        card.innerHTML = `
+                            <div class="card h-100 shadow-sm">
+                                <img src="${anime.cover}" class="card-img-top" alt="${anime.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${anime.title}</h5>
+                                </div>
+                            </div>
+                        `;
+
+                        animeCardsContainer.appendChild(card);
+                    });
+                }
+            } catch (err) {
+                console.error("Erro ao buscar animes:", err);
+            }
+        };
+
+        getAnimes();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
